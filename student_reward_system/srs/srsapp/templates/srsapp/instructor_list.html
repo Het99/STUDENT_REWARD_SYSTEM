@@ -1,0 +1,88 @@
+{% extends "srsapp/base2.html" %} {% block content %}
+<table class="table-borderless table">
+  <thead class="border-bottom font-weight-bold thead-dark text-center">
+    <tr>
+      <h5>
+        <th scope="col">
+          Instructor ID<a
+            href="{% url 'instructor_sort' 'instructor_ID' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-up-short-wide"></i>
+          </a>
+          <a
+            href="{% url 'instructor_sort' '-instructor_ID' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+          </a>
+        </th>
+      </h5>
+      <h5>
+        <th scope="col">
+          Instructor Name<a
+            href="{% url 'instructor_sort' 'instructor_name' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-up-short-wide"></i>
+          </a>
+          <a
+            href="{% url 'instructor_sort' '-instructor_name' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+          </a>
+        </th>
+      </h5>
+      <h5><th scope="col">Address</th></h5>
+      <h5><th scope="col">Admin ID<a
+        href="{% url 'instructor_sort' 'admin_ID' %}"
+        class="btn text-secondary px-0"
+      >
+        <i class="fa-solid fa-arrow-up-short-wide"></i>
+      </a>
+      <a
+        href="{% url 'instructor_sort' '-admin_ID' %}"
+        class="btn text-secondary px-0"
+      >
+        <i class="fa-solid fa-arrow-down-wide-short"></i>
+      </a></th></h5>
+      <th colspan="2">
+        <a href="{% url 'instructor_insert' %}" class="btn text-secondary px-0">
+          <h5><i class="fa-solid fa-user-plus"></i></h5>
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for instructor in instructor_list %}
+    <tr>
+      <td class="text-center">{{instructor.instructor_ID}}</td>
+      <td class="text-center">{{instructor.instructor_name}}</td>
+      <td class="text-center">{{instructor.instructor_address}}</td>
+      <td class="text-center">{{instructor.admin_ID_id}}</td>
+      <td>
+        <a
+          href="{% url 'instructor_update' instructor.instructor_ID %}"
+          class="btn text-secondary px-0"
+        >
+          <i class="far fa-edit fa-lg"></i>
+        </a>
+      </td>
+      <td>
+        <form
+          action="{% url 'instructor_delete' instructor.instructor_ID %}"
+          method="post"
+          class="d-inline"
+        >
+          {% csrf_token %}
+          <button type="submit" class="btn">
+            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

@@ -1,0 +1,86 @@
+{% extends "srsapp/base3.html" %} {% block content %}
+<table class="table-borderless table">
+  <thead class="border-bottom font-weight-bold thead-dark text-center">
+    <tr>
+      <h5>
+        <th scope="col">
+          Course ID<a
+            href="{% url 'course_sort' 'course_ID' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-up-short-wide"></i>
+          </a>
+          <a
+            href="{% url 'course_sort' '-course_ID' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+          </a>
+        </th>
+      </h5>
+      <h5>
+        <th scope="col">
+          Course Name<a
+            href="{% url 'course_sort' 'course_name' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-up-short-wide"></i>
+          </a>
+          <a
+            href="{% url 'course_sort' '-course_name' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+          </a>
+        </th>
+      </h5>
+      <h5><th scope="col">Instructor ID<a
+        href="{% url 'course_sort' 'instructor_ID' %}"
+        class="btn text-secondary px-0"
+      >
+        <i class="fa-solid fa-arrow-up-short-wide"></i>
+      </a>
+      <a
+        href="{% url 'course_sort' '-instructor_ID' %}"
+        class="btn text-secondary px-0"
+      >
+        <i class="fa-solid fa-arrow-down-wide-short"></i>
+      </a></th></h5>
+      <th colspan="2">
+        <a href="{% url 'course_insert' %}" class="btn text-secondary px-0">
+          <h5><i class="fa-solid fa-user-plus"></i></h5>
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for course in course_list %}
+    <tr>
+      <td class="text-center">{{course.course_ID}}</td>
+      <td class="text-center">{{course.course_name}}</td>
+      <td class="text-center">{{course.instructor_ID}}</td>
+      <td>
+        <a
+          href="{% url 'course_update' course.course_ID %}"
+          class="btn text-secondary px-0"
+        >
+          <i class="far fa-edit fa-lg"></i>
+        </a>
+      </td>
+      <td>
+        <form
+          action="{% url 'course_delete' course.course_ID %}"
+          method="post"
+          class="d-inline"
+        >
+          {% csrf_token %}
+          <button type="submit" class="btn">
+            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

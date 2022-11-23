@@ -1,0 +1,75 @@
+{% extends "srsapp/base.html" %} {% block content %}
+<table class="table-borderless table">
+  <thead class="border-bottom font-weight-bold thead-dark text-center">
+    <tr>
+      <h5>
+        <th scope="col">
+          Student ID<a
+            href="{% url 'student_sort' 'student_ID' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-up-short-wide"></i>
+          </a>
+          <a
+            href="{% url 'student_sort' '-student_ID' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+          </a>
+        </th>
+      </h5>
+      <h5>
+        <th scope="col">
+          Student Name<a
+            href="{% url 'student_sort' 'student_name' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-up-short-wide"></i>
+          </a>
+          <a
+            href="{% url 'student_sort' '-student_name' %}"
+            class="btn text-secondary px-0"
+          >
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+          </a>
+        </th>
+      </h5>
+      <h5><th scope="col">Address</th></h5>
+      <th colspan="2">
+        <a href="{% url 'student_insert' %}" class="btn text-secondary px-0">
+          <h5><i class="fa-solid fa-user-plus"></i></h5>
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in student_list %}
+    <tr>
+      <td>{{student.student_ID}}</td>
+      <td>{{student.student_name}}</td>
+      <td>{{student.address}}</td>
+      <td>
+        <a
+          href="{% url 'student_update' student.student_ID %}"
+          class="btn text-secondary px-0"
+        >
+          <i class="far fa-edit fa-lg"></i>
+        </a>
+      </td>
+      <td>
+        <form
+          action="{% url 'student_delete' student.student_ID %}"
+          method="post"
+          class="d-inline"
+        >
+          {% csrf_token %}
+          <button type="submit" class="btn">
+            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

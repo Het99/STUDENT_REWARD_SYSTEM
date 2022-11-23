@@ -1,0 +1,36 @@
+{% extends "srsapp/base2.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">
+            {{form.instructor_ID|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            {{form.instructor_name|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            {{form.instructor_address|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form.admin_ID|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success">
+                <i class="fa-solid fa-database"></i>submit
+            </button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'instructor_list' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-stream"></i>Back to list
+            </a>
+        </div>
+    </div>
+</form>
+{% endblock content %}

@@ -1,11 +1,11 @@
 # STUDENT_REWARD_SYSTEM
 
-AUTHOR NAMES:
-  HET PATEL
-  ADITYA JADEJA
+AUTHOR NAMES:<br />
+  HET PATEL<br />
+  ADITYA JADEJA<br />
   
-INSTRUCTIONS:
+INSTRUCTIONS:<br />
 
-Download the zip folder.
-connect the database to pgadmin.
-Run python manage.py runserver in your device.
+Download the zip folder. <br />
+connect the database to pgadmin.<br />
+Run python manage.py runserver in your device.<br />
